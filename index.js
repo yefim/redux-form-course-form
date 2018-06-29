@@ -1,9 +1,14 @@
 import React from 'react';
+import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
+import {reducer as formReducer} from 'redux-form';
 import {render} from 'react-dom';
 
-console.log('gere');
+const reducers = combineReducers({
+  form: formReducer
+});
 
-// const store = createStore();
+const store = createStore(reducers);
 
 class App extends React.Component {
   render() {
@@ -26,6 +31,8 @@ class App extends React.Component {
 };
 
 render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('app')
 );
